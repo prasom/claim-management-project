@@ -1,0 +1,14 @@
+<div fxLayout="row wrap" class="logo--container">
+  <div fxFlex="100%" class="logo--item">
+    <img width="100" height="100" [src]="logo?.value">
+  </div>
+  <div fxFlex="100%" class="logo--item">
+    <input (change)="getFiles($event)" type="file" name="file" id="file">
+  </div>
+  <div fxFlex="100%" class="logo--item">
+    <div class="button-row">
+      <button color="primary" mat-raised-button (click)="updateLogo()">บันทึก</button>
+      <!-- <button color="warn" mat-raised-button (click)="cancel()">ยกเลิก</button> -->
+    </div>
+  </div>
+</div>

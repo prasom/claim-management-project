@@ -1,0 +1,62 @@
+.print-bill--container {
+  margin: 20px;
+}
+
+.print-header {
+  display: flex;
+}
+
+.print-header .logo {
+  padding: 10px;
+}
+
+.print-header h1,
+h2,
+h3,
+p {
+  margin: 2px;
+}
+
+.print-header .logo img {
+  height: 150px;
+}
+
+.print-header .address {
+  padding: 10px;
+}
+
+.print-body .title h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+.option-checkbox span.mat-checkbox-label {
+  color: black !important;
+}
+
+.bill-detail {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+.bill-detail td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}
+
+.mat-checkbox{
+  margin-right: 10px;
+}
+
+.check-box--row{
+  display: inherit;
+}

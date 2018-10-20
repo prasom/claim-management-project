@@ -1,0 +1,107 @@
+<div fxLayout="row" fxFlex class="container__customer-input-page">
+  <form [formGroup]="fg">
+    <div class="input-container__customer-input-page" fxLayout="row wrap">
+      <p fxFlex.xs="100%" fxFlex="45%">
+        <mat-form-field>
+          <input matInput [matDatepicker]="picker" placeholder="วันที่ติดต่อ" formControlName="contactDate">
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+          <mat-error *ngIf="fg.get('contactDate').hasError('required')">
+            กรุณาเพิ่มข้อมูล วันที่ติดต่อ
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p fxFlex></p>
+      <p fxFlex.xs="100%" fxFlex="45%">
+        <mat-form-field>
+          <mat-select placeholder="ประกัน" formControlName="insureType">
+            <mat-option *ngFor="let insure of insureItems$ | async" [value]="insure?.insure_type_id">{{insure?.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="fg.get('insureType').hasError('required')">
+            กรุณาเพิ่มข้อมูล ประกัน
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p fxFlex.xs="100%" fxFlex="45%">
+        <mat-form-field>
+          <mat-select placeholder="ประเภทรถ" formControlName="typeOfCar">
+            <mat-option *ngFor="let car of typeOfCarsItems$ | async" [value]="car?.car_type_id">{{car?.name}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="fg.get('typeOfCar').hasError('required')">
+            กรุณาเพิ่มข้อมูล ประเภทรถ
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p fxFlex></p>
+      <p fxFlex.xs="100%" fxFlex="45%">
+        <mat-form-field>
+          <input matInput placeholder="ยี่ห้อ" formControlName="brand">
+          <mat-error *ngIf="fg.get('brand').hasError('required')">
+            กรุณาเพิ่มข้อมูล ยี่ห้อ
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p fxFlex.xs="100%" fxFlex="45%">
+        <mat-form-field>
+          <input matInput placeholder="ทะเบียน" formControlName="carNo">
+          <mat-error *ngIf="fg.get('carNo').hasError('required')">
+            กรุณาเพิ่มข้อมูล ทะเบียน
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p fxFlex></p>
+      <p fxFlex.xs="100%" fxFlex="45%">
+        <mat-form-field>
+          <input matInput placeholder="เบอร์ติดต่อ" formControlName="tel">
+          <mat-error *ngIf="fg.get('tel').hasError('required')">
+            กรุณาเพิ่มข้อมูล เบอร์ติดต่อ
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p fxFlex="100%">
+        <mat-radio-group class="radio_row" formControlName="customerType">
+          <mat-label>
+            ประกัน/คู่กรณี :
+          </mat-label>
+          <mat-radio-button value="1">ประกัน</mat-radio-button>
+          <mat-radio-button value="2">คู่กรณี</mat-radio-button>
+          <mat-error *ngIf="fg.get('customerType').dirty && fg.get('customerType').hasError('required')">
+            กรุณาเพิ่มข้อมูล ประกัน/คู่กรณี
+          </mat-error>
+        </mat-radio-group>
+      </p>
+
+      <p fxFlex="100%">
+        <mat-radio-group class="radio_row" formControlName="level">
+          <mat-label>
+            ความเสียหาย :
+          </mat-label>
+          <mat-radio-button value="1">A</mat-radio-button>
+          <mat-radio-button value="2">B</mat-radio-button>
+          <mat-radio-button value="2">C</mat-radio-button>
+          <mat-error *ngIf="fg.get('level').dirty && fg.get('level').hasError('required')">
+            กรุณาเพิ่มข้อมูล ความเสียหาย
+          </mat-error>
+        </mat-radio-group>
+      </p>
+      <p fxFlex="100%">
+        <mat-checkbox (change)="onAppointmentChange($event)" formControlName="isAppointment">ทำเรื่องก่อนจอด</mat-checkbox>
+      </p>
+      <p fxFlex.xs="100%" fxFlex="45%">
+        <mat-form-field>
+          <input matInput [matDatepicker]="parkingDatepicker" placeholder="วันที่นัดจอด" formControlName="parkingDate">
+          <mat-datepicker-toggle matSuffix [for]="parkingDatepicker"></mat-datepicker-toggle>
+          <mat-datepicker #parkingDatepicker></mat-datepicker>
+          <mat-error *ngIf="fg.get('parkingDate').hasError('required')">
+            กรุณาเพิ่มข้อมูล วันที่นัดจอด
+          </mat-error>
+        </mat-form-field>
+      </p>
+      <p fxFlex></p>
+      <div class="button-row" fxFlex="100%">
+        <button color="primary" mat-raised-button (click)="saveCustomer()">บันทึก</button>
+        <button color="warn" mat-raised-button (click)="cancel()">ยกเลิก</button>
+      </div>
+    </div>
+  </form>
+</div>

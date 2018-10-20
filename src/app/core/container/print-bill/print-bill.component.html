@@ -1,0 +1,94 @@
+<div class="print-bill--container" fxLayout="row wrap">
+  <div fxFlex="100%" id="print" class="padding print-header">
+    <div class="logo">
+      <img width="150" height="150" [src]="logo?.value" alt="">
+    </div>
+    <div class="address text-center">
+      <h1>หจก.อู่สหมิตรยนตรกิจ</h1>
+      <p>33 หมู่ 4 ต.คุ้งลาน อ.บางปะอิน จ.พระนครศรีอยุธยา 13160</p>
+    </div>
+  </div>
+  <div fxFlex="100%" class="print-body padding">
+    <div class="title text-center">
+      <h3>ทะเบียนคุมราคาและวางบิล</h3>
+    </div>
+    <div class="text-center">
+      <p>วันที่ {{day}} เดือน {{month}} พ.ศ. {{year}}</p>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <div fxFlex="45%" class="check-box--row">
+        <mat-icon svgIcon="outline-check_box_outline_blank"></mat-icon>
+        <span class="padding">คุมราคา</span>
+      </div>
+      <div fxFlex></div>
+      <div fxFlex="45%" class="check-box--row">
+        <mat-icon svgIcon="outline-check_box"></mat-icon>
+        <span class="padding">วางบิล</span>
+      </div>
+    </div>
+    <div class="text-left">
+      <p>บริษัทประกัน : {{billInfo?.insure_type_desc}}</p>
+    </div>
+    <div class="text-left">
+      <p>ชื่ออู่ : หจก.อู่สหมิตรยนตรกิจ</p>
+    </div>
+    <table class="bill-detail">
+      <thead>
+        <tr>
+          <th class="text-center" rowspan="2">ลำดับที่</th>
+          <th class="text-center" rowspan="2">เลขเคลม</th>
+          <th class="text-center" rowspan="2">ทะเบียนรถ</th>
+          <th class="text-center" rowspan="2">ชื่อรถ</th>
+          <th class="text-center" rowspan="2">ป/ค</th>
+          <th class="text-center">ราคาซ่อม</th>
+        </tr>
+        <tr>
+          <th class="text-center">ค่าแรง + อะไหล่</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="text-center">1.</td>
+          <td>{{billInfo?.claim_no}}</td>
+          <td>{{billInfo?.car_number}}</td>
+          <td>{{billInfo?.car_type_desc}}</td>
+          <td>
+            <ng-container *ngIf="billInfo?.customer_type === '1'">
+              ประกัน
+            </ng-container>
+            <ng-container *ngIf="billInfo?.customer_type === '2'">
+              คู่กรณี
+            </ng-container>
+          </td>
+          <td class="u--text_align_right">{{billInfo?.amount | number}} บาท</td>
+        </tr>
+      </tbody>
+    </table>
+    <table>
+      <tbody>
+        <tr>
+          <td>
+            <p>ลายมือชื่อผู้วางบิล: .........................</p>
+          </td>
+          <td>
+            <p>ลายมือชื่อผู้รับวางบิล: .......................</p>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <p>วันที่: ........................................</p>
+          </td>
+          <td>
+            <p>วันที่: ........................................</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div fxFlex="100%" class="parking-receive-detail--row no-print">
+    <div class="button-row" fxFlex="100%">
+      <button color="primary" mat-raised-button (click)="printPdf()">Print PDF</button>
+      <button color="warn" mat-raised-button (click)="print()">Print</button>
+    </div>
+  </div>
+</div>

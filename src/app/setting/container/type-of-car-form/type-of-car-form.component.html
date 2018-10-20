@@ -1,0 +1,27 @@
+<div fxLayout="row wrap" class="typeof-insure--container">
+  <div *ngIf="!isEdit && !isCreate" fxFlex="100%" fxLayout="column" class="typeof-insure--item">
+    <span class="text-md">ประเภทรถ</span>
+    <strong>{{selectedTypeOfCar?.name}}</strong>
+  </div>
+  <div *ngIf="isEdit || isCreate" fxFlex="100%" fxLayout="column" class="typeof-insure--item">
+    <mat-form-field>
+      <input matInput placeholder="ประเภทรถ" [formControl]="typeOfCarName">
+      <mat-error *ngIf="typeOfCarName.hasError('required')">
+        กรุณาเพิ่มข้อมูล ประเภทรถ
+      </mat-error>
+    </mat-form-field>
+  </div>
+  <div fxFlex="100%" class="typeof-insure--item">
+    <div class="button-row" fxFlex="100%">
+      <button *ngIf="!isCreate" color="accent" mat-raised-button (click)="toggleEdit()">
+        <ng-container *ngIf="!isEdit else cancelEdit">แก้ไข</ng-container>
+      </button>
+      <button *ngIf="isEdit || isCreate" color="primary" mat-raised-button (click)="submitInsure()">บันทึก</button>
+      <button color="warn" mat-raised-button (click)="cancel()">ยกเลิก</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #cancelEdit>
+  <span>ยกเลิกแก้ไข</span>
+</ng-template>

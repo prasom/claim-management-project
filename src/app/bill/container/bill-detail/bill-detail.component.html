@@ -1,0 +1,87 @@
+<div fxLayout="row wrap" class="bill-detail--container">
+  <ng-container *ngIf="selectedBill$ | async as selectedBill">
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">วันที่ติดต่อ</span>
+      <strong>{{selectedBill?.contact_date | dateTh}}</strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ประกัน</span>
+      <strong>{{selectedBill?.insure_type_desc}}</strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ประเภทรถ</span>
+      <strong>{{selectedBill?.car_type_desc}}</strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ยี่ห้อ</span>
+      <strong>{{selectedBill?.brand}}</strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ทะเบียน</span>
+      <strong>{{selectedBill?.car_number}}</strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">เบอร์ติดต่อ</span>
+      <strong>{{selectedBill?.contact_tel}}</strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ประกัน/คู่กรณี</span>
+      <strong>
+        <ng-container *ngIf="selectedBill?.customer_type === '1'">ประกัน</ng-container>
+        <ng-container *ngIf="selectedBill?.customer_type === '2'">คู่กรณี</ng-container>
+      </strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ความเสียหาย</span>
+      <strong>
+        <ng-container *ngIf="selectedBill?.service_level === '1'">A</ng-container>
+        <ng-container *ngIf="selectedBill?.service_level === '2'">B</ng-container>
+        <ng-container *ngIf="selectedBill?.service_level === '3'">C</ng-container>
+      </strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ทำเรื่องก่อนจอด</span>
+      <strong>
+        <ng-container *ngIf="selectedBill?.is_parking === '0'">ไม่ใช่</ng-container>
+        <ng-container *ngIf="selectedBill?.is_parking === '1'">ใช่</ng-container>
+      </strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">วันที่นัดจอด</span>
+      <strong>{{selectedBill?.parking_date | dateTh}}</strong>
+    </div>
+
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <mat-form-field>
+        <input matInput placeholder="เลขเคลม" [formControl]="claimNo">
+        <mat-error *ngIf="claimNo.hasError('required')">
+          กรุณาเพิ่มข้อมูล เลขเคลม
+        </mat-error>
+      </mat-form-field>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <mat-form-field>
+        <input matInput placeholder="ราคาซ่อม" [formControl]="price">
+        <mat-error *ngIf="price.hasError('required')">
+          กรุณาเพิ่มข้อมูล ราคาซ่อม
+        </mat-error>
+        <mat-error *ngIf="price.hasError('pattern')">
+          กรุณาเพิ่มข้อมูลราคาซ่อมให้ถูกต้อง
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div fxFlex="100%" class="parking-receive-detail--row">
+      <div class="button-row" fxFlex="100%">
+        <button color="primary" mat-raised-button (click)="submitBill()">บันทึก</button>
+        <button color="warn" mat-raised-button (click)="cancel()">ยกเลิก</button>
+      </div>
+    </div>
+  </ng-container>
+</div>

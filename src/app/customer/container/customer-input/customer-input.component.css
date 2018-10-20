@@ -1,0 +1,16 @@
+
+:host{
+    padding: 5px;
+}
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}
+
+.container__customer-input-page mat-form-field{
+    width: 100%;
+}
+
+.radio_row mat-radio-button{
+    margin-right: 8px;
+}

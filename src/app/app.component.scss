@@ -1,0 +1,13 @@
+@import '../variables.scss';
+
+:host {
+  height: 100%;
+}
+
+mat-sidenav {
+  width: 200px;
+}
+
+.menu--color_blue {
+  background-color: $colorSubToolbar;
+}

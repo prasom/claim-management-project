@@ -1,0 +1,13 @@
+table{
+    width: 100%
+}
+
+.customer-list--toolbar{
+    display: flex;
+    align-items: center;
+}
+
+.customer-list--container{
+    position: relative;
+}
+

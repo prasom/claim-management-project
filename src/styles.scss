@@ -1,7 +1,50 @@
 /* You can add global styles to this file, and also import other style files */
-html, body {
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "./style/utils";
+
+html,
+body {
   margin: 0;
   padding: 0;
 
-  height: 100%;
+}
+
+.text-center{
+  text-align: center !important;
+}
+
+.u__margin-5 {
+  margin: 5px !important;
+}
+
+.u__margin-10 {
+  margin: 10px;
+}
+
+.snack-bar--success {
+  background-color: #749f61;
+}
+
+.snack-bar--error {
+  background-color: #E68080;
+}
+
+.app-loading-shade {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 56px;
+  right: 0;
+  background: rgba(0, 0, 0, 0.15);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media print {
+  .no-print {
+      display: none !important;
+  }
 }

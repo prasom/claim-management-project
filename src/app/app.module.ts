@@ -2,49 +2,58 @@ import 'zone.js/dist/zone-mix';
 import 'reflect-metadata';
 import '../polyfills';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { NgModule, LOCALE_ID } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 
-// NG Translate
-import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
-import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
 import { ElectronService } from './providers/electron.service';
 
 import { WebviewDirective } from './directives/webview.directive';
-
+import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './components/home/home.component';
+import { CoreModule } from './core/core.module';
 
-// AoT requires an exported function for factories
-export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http, './assets/i18n/', '.json');
-}
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { CustomSerializer, reducers } from './store';
+import { RouterStateSerializer } from '@ngrx/router-store';
+import { AppConfig } from '../environments/environment';
+import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
+
+
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    WebviewDirective
+    WebviewDirective,
   ],
   imports: [
     BrowserModule,
     FormsModule,
+    ReactiveFormsModule,
+    BrowserAnimationsModule,
     HttpClientModule,
     AppRoutingModule,
-    TranslateModule.forRoot({
-      loader: {
-        provide: TranslateLoader,
-        useFactory: (HttpLoaderFactory),
-        deps: [HttpClient]
-      }
+    PerfectScrollbarModule,
+    CoreModule,
+    EffectsModule.forRoot([]),
+    StoreDevtoolsModule.instrument({
+      name: 'Claim Management Apps',
+      logOnly: !AppConfig.production
     })
   ],
-  providers: [ElectronService],
+  providers: [
+    ElectronService,
+    { provide: RouterStateSerializer, useClass: CustomSerializer },
+    { provide: LOCALE_ID, useValue: 'th-TH' }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

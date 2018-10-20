@@ -1,0 +1,69 @@
+<div fxLayout="row wrap" class="parking-receive-detail--container">
+  <ng-container *ngIf="selectedParkingHistoryItem$ | async as selectedParkingHistoryItem">
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">วันที่ติดต่อ</span>
+      <strong>{{selectedParkingHistoryItem?.contact_date | dateTh}}</strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ประกัน</span>
+      <strong>{{selectedParkingHistoryItem?.insure_type_desc}}</strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ประเภทรถ</span>
+      <strong>{{selectedParkingHistoryItem?.car_type_desc}}</strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ยี่ห้อ</span>
+      <strong>{{selectedParkingHistoryItem?.brand}}</strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ทะเบียน</span>
+      <strong>{{selectedParkingHistoryItem?.car_number}}</strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">เบอร์ติดต่อ</span>
+      <strong>{{selectedParkingHistoryItem?.contact_tel}}</strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ประกัน/คู่กรณี</span>
+      <strong>
+        <ng-container *ngIf="selectedParkingHistoryItem?.customer_type === '1'">ประกัน</ng-container>
+        <ng-container *ngIf="selectedParkingHistoryItem?.customer_type === '2'">คู่กรณี</ng-container>
+      </strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ความเสียหาย</span>
+      <strong>
+        <ng-container *ngIf="selectedParkingHistoryItem?.service_level === '1'">A</ng-container>
+        <ng-container *ngIf="selectedParkingHistoryItem?.service_level === '2'">B</ng-container>
+        <ng-container *ngIf="selectedParkingHistoryItem?.service_level === '3'">C</ng-container>
+      </strong>
+    </div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">ทำเรื่องก่อนจอด</span>
+      <strong>
+        <ng-container *ngIf="selectedParkingHistoryItem?.is_parking === '0'">ไม่ใช่</ng-container>
+        <ng-container *ngIf="selectedParkingHistoryItem?.is_parking === '1'">ใช่</ng-container>
+      </strong>
+    </div>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%" fxLayout="column" class="parking-receive-detail--row">
+      <span class="text-md">วันที่นัดจอด</span>
+      <strong>{{selectedParkingHistoryItem?.parking_date | dateTh}}</strong>
+    </div>
+    <div fxFlex="100%" fxLayout="column" class="parking-receive-detail--row">
+      <mat-checkbox [formControl]="isParking">จอด</mat-checkbox>
+    </div>
+    <div fxFlex="100%" class="parking-receive-detail--row">
+      <div class="button-row" fxFlex="100%">
+        <button color="primary" mat-raised-button (click)="updateParkingHistory()">บันทึก</button>
+        <button color="warn" mat-raised-button (click)="cancel()">ยกเลิก</button>
+      </div>
+    </div>
+  </ng-container>
+
+</div>

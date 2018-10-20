@@ -1,0 +1,46 @@
+.margin-none {
+  margin: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.print--container {
+  padding: 20px;
+}
+
+.print-body .title h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+}
+
+.option-checkbox span.mat-checkbox-label {
+  color: black !important;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 2px;
+}
+
+.parking-receive-detail--row {
+  padding: 10px;
+}
+
+.button-row button,
+.button-row a {
+  margin-right: 8px;
+}
+
+.row-separator {
+  border-bottom: dashed 1px #ccc;
+}
+
+.mat-checkbox{
+  margin-right: 10px;
+}

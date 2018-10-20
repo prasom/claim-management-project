@@ -1,6 +1,8 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, shell } from 'electron';
 import * as path from 'path';
 import * as url from 'url';
+import * as fs from 'fs';
+import * as os from 'os';
 
 let win, serve;
 const args = process.argv.slice(1);
@@ -72,3 +74,36 @@ try {
   // Catch Error
   // throw e;
 }
+
+export const printPDF = () => {
+  const pdfPath = path.join(os.tmpdir(), 'print.pdf');
+  win.webContents.printToPDF({}, (error, data) => {
+    if (error) { throw error; }
+    fs.writeFile(pdfPath, data, (error) => {
+      if (error) {
+        throw error;
+      }
+      shell.openItem(pdfPath);
+    });
+  });
+};
+
+export const print = () => {
+  const pdfPath = path.join(os.tmpdir(), 'print.pdf');
+  win.webContents.print({
+    silent: false,
+    printBackground: true
+  }, function (error, data) {
+    if (error) {
+      throw error;
+    }
+    fs.writeFile(pdfPath, data, function (error) {
+      if (error) {
+        throw error;
+      }
+      shell.openItem(pdfPath);
+    });
+  });
+};
+
+
