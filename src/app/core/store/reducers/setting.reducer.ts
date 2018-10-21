@@ -32,7 +32,11 @@ export function reducer(state = initialState, action: SettingActions): State {
       return { ...state, loading: true };
     }
     case SettingActionTypes.UpdateLogoSuccess: {
-      return { ...state, loading: false };
+      return {
+        ...state,
+        loading: false,
+        settings : [action.payload.logo],
+      };
     }
     default:
       return state;

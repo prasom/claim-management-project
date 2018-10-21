@@ -37,12 +37,12 @@ export class SettingService {
     );
   }
 
-  updateLogo(logo: string) {
+  updateLogo(logo: ISettingModel) {
     const LOGO_KEY = 'LOGO';
     const query = 'UPDATE config_app SET `value` = ? WHERE `key` = ?';
-    return this.db.exeNoneQuery(query, [logo, LOGO_KEY]).pipe(
+    return this.db.exeNoneQuery(query, [logo.value, logo.key]).pipe(
       map(data => {
-        return data;
+        return logo;
       }),
       catchError(error => {
         return Observable.throw(error);

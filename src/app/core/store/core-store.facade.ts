@@ -6,6 +6,7 @@ import { Store, select } from '@ngrx/store';
 import { ICustomerModel } from '../models/customer.model';
 import { LoadSettings, UpdateLogo, LoadBills, ViewBills, AddBills, UpdateBills } from './actions';
 import { IBillAddRequestModel } from '../models/bill.model';
+import { ISettingModel } from '../models/setting.model';
 
 @Injectable({
     providedIn: 'root'
@@ -70,7 +71,7 @@ export class CoreStoreFacade {
         this.store.dispatch(new LoadSettings());
     }
 
-    updateLogo(logo: string) {
+    updateLogo(logo: ISettingModel) {
         this.store.dispatch(new UpdateLogo({ logo: logo }));
     }
 

@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+import { ISettingModel } from '../../models/setting.model';
 
 export enum SettingActionTypes {
   LoadSettings = '[Setting] Load Settings',
@@ -15,7 +16,7 @@ export class LoadSettings implements Action {
 
 export class LoadSettingsSuccess implements Action {
   readonly type = SettingActionTypes.LoadSettingsSuccess;
-  constructor(public payload: { settings: any }) { }
+  constructor(public payload: { settings: ISettingModel[] }) { }
 }
 
 export class LoadSettingsFail implements Action {
@@ -25,12 +26,12 @@ export class LoadSettingsFail implements Action {
 
 export class UpdateLogo implements Action {
   readonly type = SettingActionTypes.UpdateLogo;
-  constructor(public payload: { logo: string }) { }
+  constructor(public payload: { logo: ISettingModel }) { }
 }
 
 export class UpdateLogoSuccess implements Action {
   readonly type = SettingActionTypes.UpdateLogoSuccess;
-  constructor(public payload: { logo: string }) { }
+  constructor(public payload: { logo: ISettingModel }) { }
 }
 
 export type SettingActions = LoadSettings

@@ -41,7 +41,12 @@ export class LogoComponent implements OnInit {
 
   updateLogo() {
     if (this.selectedLogo) {
-      this.coreStoreFacade.updateLogo(this.selectedLogo);
+      const request: ISettingModel = {
+        id : this.selectedLogo.id,
+        key: 'LOGO',
+        value: this.selectedLogo
+      };
+      this.coreStoreFacade.updateLogo(request);
     }
   }
 
