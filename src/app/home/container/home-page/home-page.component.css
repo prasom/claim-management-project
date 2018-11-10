@@ -1,0 +1,8 @@
+.welcome--container {
+  display: flex;
+  justify-content: center;
+}
+
+.welcome--title {
+  margin-top: 100px;
+}

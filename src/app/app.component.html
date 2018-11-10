@@ -6,7 +6,7 @@
     <button mat-button [routerLink]="['/customer']" routerLinkActive="active">นัดรับรถ</button>
     <button mat-button [routerLink]="['/parking']" routerLinkActive="active">รับรถจอด</button>
     <button mat-button [routerLink]="['/bill']" routerLinkActive="active">วางบิล</button>
-    <button mat-button [matMenuTriggerFor]="menu">ตั้งค่า</button>
+    <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="active">ตั้งค่า</button>
     <mat-menu #menu="matMenu" [overlapTrigger]="false">
       <button mat-menu-item [routerLink]="['setting/typeofinsure']" routerLinkActive="router-link-active" >บริษัทประกัน</button>
       <button mat-menu-item [routerLink]="['setting/typeofcar']" routerLinkActive="router-link-active" >ประเภทรถ</button>

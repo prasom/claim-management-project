@@ -13,14 +13,14 @@ export class ParkingHistoryService {
   constructor(private db: DbConnectionService) { }
 
   find(date: string): Observable<ParkingHistoryViewModel[]> {
-    const query = 'select ci.*,ph.*,it.name as insure_type_desc,ct.name as car_type_desc from claim_info ci left join parking_history ph on ci.id = ph.claim_info_id left join insure_type it on ci.insure_ref_key = it.insure_type_id left join car_type ct on ci.car_type_id = ct.car_type_id where parking_date = ?';
+    const query = 'select ci.*,ph.*,it.name as insure_type_desc,ct.name as car_type_desc from claim_info ci left join parking_history ph on ci.id = ph.claim_info_id left join insure_type it on ci.insure_ref_key = it.insure_type_id left join car_type ct on ci.car_type_id = ct.car_type_id where parking_status = ? or parking_date = ?';
     let filterDate: any;
     if (date) {
       filterDate = moment(date).format('YYYY-MM-DD');
     } else {
       filterDate = moment().format('YYYY-MM-DD');
     }
-    return this.db.queryWithParams(query, filterDate).pipe(
+    return this.db.queryWithParams(query, [0, filterDate]).pipe(
       map(data => {
         return data.map(d => {
           let obj: ParkingHistoryViewModel = {

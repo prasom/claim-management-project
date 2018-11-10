@@ -53,7 +53,8 @@ import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
   providers: [
     ElectronService,
     { provide: RouterStateSerializer, useClass: CustomSerializer },
-    { provide: LOCALE_ID, useValue: 'th-TH' }],
+    { provide: LOCALE_ID, useValue: 'th-TH' }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
