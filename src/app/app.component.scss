@@ -11,3 +11,7 @@ mat-sidenav {
 .menu--color_blue {
   background-color: $colorSubToolbar;
 }
+
+.app--content_container{
+  height: calc(100vh - 128px);
+}
