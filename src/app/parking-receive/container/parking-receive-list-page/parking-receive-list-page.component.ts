@@ -15,7 +15,7 @@ import { ParkingReceiveStoreFacade } from '../../store/parking-receive-store.fac
 export class ParkingReceiveListPageComponent implements OnInit, AfterViewInit {
 
   searchForms: FormGroup;
-  displayedColumns: string[] = ['insure_type_desc', 'contact_date', 'brand', 'contact_tel', 'status'];
+  displayedColumns: string[] = ['insure_type_desc', 'contact_date', 'parking_date', 'brand', 'contact_tel', 'status'];
   parkingHistories$: Observable<ParkingHistoryViewModel[]> = this.parkingStoreFaced.parkingHistoryItems$;
 
 
