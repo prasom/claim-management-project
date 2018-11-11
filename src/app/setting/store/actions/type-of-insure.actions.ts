@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { IInsure } from '../../../core/models/insure.model';
+import { IOkPackage } from '../../../core/models/ok-package.model';
 
 export enum TypeOfInsureActionTypes {
   LoadTypeOfInsures = '[TypeOfInsure] Load TypeOfInsures',
@@ -29,7 +30,7 @@ export class AddTypeOfInsures implements Action {
 
 export class AddTypeOfInsuresSuccess implements Action {
   readonly type = TypeOfInsureActionTypes.AddTypeOfInsuresSuccess;
-  constructor(public payload: { typeOfInsure: IInsure }) { }
+  constructor(public payload: { typeOfInsure: IOkPackage }) { }
 }
 
 export class UpdateTypeOfInsures implements Action {
@@ -39,7 +40,7 @@ export class UpdateTypeOfInsures implements Action {
 
 export class UpdateTypeOfInsuresSuccess implements Action {
   readonly type = TypeOfInsureActionTypes.UpdateTypeOfInsuresSuccess;
-  constructor(public payload: { typeOfInsure: IInsure }) { }
+  constructor(public payload: { typeOfInsure: IOkPackage }) { }
 }
 
 export class EditTypeOfInsures implements Action {

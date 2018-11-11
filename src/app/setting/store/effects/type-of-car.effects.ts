@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { TypeOfCarService } from '../../../core/services/type-of-car.service';
 import { TypeOfCarActionTypes, TypeOfCarActions, EditTypeOfCars, EditTypeOfCarsSuccess, AddTypeOfCars, AddTypeOfCarsSuccess, UpdateTypeOfCars, UpdateTypeOfCarsSuccess } from '../actions';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { LoadTypeOfCarsSuccess, ErrorTypeOfCars } from '../actions';
 import { of } from 'rxjs';
 import { NotificationService } from '../../../core/services/notification.service';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -60,6 +61,28 @@ export class TypeOfCarEffects {
     ))
   );
 
+  @Effect({ dispatch: false })
+  AddTypeOfCarsSuccess$ = this.actions$.pipe(
+    ofType<AddTypeOfCarsSuccess>(TypeOfCarActionTypes.AddTypeOfCarsSuccess),
+    map(action => action.payload.typeOfCar),
+    tap((payload) => {
+      this.router.navigate([`/setting/typeofcar`]);
+    })
+  );
 
-  constructor(private actions$: Actions, private typeOfCarService: TypeOfCarService, private notificationService: NotificationService) { }
+  @Effect({ dispatch: false })
+  updateTypeOfCarsSuccess$ = this.actions$.pipe(
+    ofType<UpdateTypeOfCars>(TypeOfCarActionTypes.UpdateTypeOfCarsSuccess),
+    map(action => action.payload.typeOfCar),
+    tap((payload) => {
+      this.router.navigate([`/setting/typeofcar`]);
+    })
+  );
+
+  constructor(
+    private actions$: Actions,
+    private typeOfCarService: TypeOfCarService,
+    private notificationService: NotificationService,
+    private router: Router
+  ) { }
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { MatPaginator, MatTableDataSource } from '@angular/material';
 import { ITypeOfCar } from '../../../core/models/type-of-car.model';
@@ -9,7 +9,7 @@ import { SettingStoreFacade } from '../../store/setting-store.facade';
   templateUrl: './type-of-car-list.component.html',
   styleUrls: ['./type-of-car-list.component.css']
 })
-export class TypeOfCarListComponent implements OnInit {
+export class TypeOfCarListComponent implements OnInit, AfterViewInit {
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -24,6 +24,10 @@ export class TypeOfCarListComponent implements OnInit {
     this.settingStore.typeOfCars$.subscribe(data => {
       this.dataSource.data = data;
     });
+  }
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 }

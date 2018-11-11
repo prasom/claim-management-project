@@ -3,6 +3,7 @@ import { DbConnectionService } from './db-connection.service';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { ICustomerModel } from '../models/customer.model';
+import { IOkPackage } from '../models/ok-package.model';
 
 @Injectable({
   providedIn: 'root'
@@ -39,7 +40,7 @@ export class CustomerService {
     );
   }
 
-  add(customer: ICustomerModel): Observable<ICustomerModel> {
+  add(customer: ICustomerModel): Observable<IOkPackage> {
     let query = 'INSERT INTO claim_info SET ?';
     return this.db.exeNoneQuery(query, customer).pipe(
       map(data => {
@@ -48,7 +49,7 @@ export class CustomerService {
     );
   }
 
-  update(customer: ICustomerModel): Observable<ICustomerModel> {
+  update(customer: ICustomerModel): Observable<IOkPackage> {
     const query = 'UPDATE claim_info SET contact_date = ?,insure_ref_key = ?,brand = ?,car_number = ?,customer_type = ?,service_level = ?,is_parking = ?,parking_date = ?,create_date = ?,update_date = ?,create_by = ?,car_type_id = ?,contact_tel = ?,car_type_other = ? WHERE id = ?';
     return this.db.exeNoneQuery(query,
       [customer.contact_date,

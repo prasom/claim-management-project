@@ -132,7 +132,7 @@
         <button color="accent" mat-raised-button (click)="onEdit()">
           <ng-container *ngIf="!isEdit else cancelEdit">แก้ไข</ng-container>
         </button>
-        <button color="primary" mat-raised-button (click)="updateCustomer()">บันทึก</button>
+        <button *ngIf="isEdit" color="primary" mat-raised-button (click)="updateCustomer()">บันทึก</button>
         <button color="warn" mat-raised-button (click)="cancel()">ยกเลิก</button>
       </div>
     </form>

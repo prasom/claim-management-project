@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import {
   TypeOfInsureActionTypes,
   LoadTypeOfInsuresSuccess,
@@ -15,6 +15,7 @@ import {
 import { InsureService } from '../../../core/services/insure.service';
 import { of } from 'rxjs';
 import { NotificationService } from '../../../core/services/notification.service';
+import { Router } from '@angular/router';
 
 
 @Injectable()
@@ -68,9 +69,29 @@ export class TypeOfInsureEffects {
     ))
   );
 
+  @Effect({ dispatch: false })
+  addTypeOfInsuredSuccess$ = this.actions$.pipe(
+    ofType<AddTypeOfInsuresSuccess>(TypeOfInsureActionTypes.AddTypeOfInsuresSuccess),
+    map(action => action.payload.typeOfInsure),
+    tap((payload) => {
+      this.router.navigate([`/setting/typeofinsure`]);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  updateTypeOfInsuredSuccess$ = this.actions$.pipe(
+    ofType<UpdateTypeOfInsuresSuccess>(TypeOfInsureActionTypes.UpdateTypeOfInsuresSuccess),
+    map(action => action.payload.typeOfInsure),
+    tap((payload) => {
+      this.router.navigate([`/setting/typeofinsure`]);
+    })
+  );
+
+
   constructor(
     private actions$: Actions,
     private typeOfInsureService: InsureService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) { }
 }

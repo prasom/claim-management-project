@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { ICustomerModel } from '../../../core/models/customer.model';
+import { IOkPackage } from '../../models/ok-package.model';
 
 export enum CustomerActionTypes {
 
@@ -45,7 +46,7 @@ export class AddCustomer implements Action {
 
 export class AddCustomerSuccess implements Action {
   readonly type = CustomerActionTypes.AddCustomerSuccess;
-  constructor(public payload: { customer: ICustomerModel }) { }
+  constructor(public payload: { customer: IOkPackage }) { }
 }
 
 export class ViewCustomer implements Action {
@@ -65,7 +66,7 @@ export class UpdateCustomer implements Action {
 
 export class UpdateCustomerSuccess implements Action {
   readonly type = CustomerActionTypes.UpdateCustomerSuccess;
-  constructor(public payload: { customer: ICustomerModel }) { }
+  constructor(public payload: { customer: IOkPackage }) { }
 }
 
 export type CustomerActions = LoadCustomers

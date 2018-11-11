@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { CustomerActionTypes, LoadCustomersSuccess, LoadCustomersFail, AddCustomerSuccess, ViewCustomer, ViewCustomerSuccess } from '../actions/customer.actions';
-import { switchMap, map, catchError } from 'rxjs/operators';
+import { CustomerActionTypes, LoadCustomersSuccess, LoadCustomersFail, AddCustomerSuccess, ViewCustomer, ViewCustomerSuccess, UpdateCustomerSuccess } from '../actions/customer.actions';
+import { switchMap, map, catchError, tap } from 'rxjs/operators';
 import { CustomerService } from '../../../core/services/customer.service';
 import { of } from 'rxjs';
 
 import * as fromCustomerAction from '../actions';
 import { NotificationService } from '../../../core/services/notification.service';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class CustomerEffects {
@@ -63,9 +64,31 @@ export class CustomerEffects {
     }),
   );
 
+  @Effect({ dispatch: false })
+  addCustomerSuccess$ = this.actions$.pipe(
+    ofType<AddCustomerSuccess>(CustomerActionTypes.AddCustomerSuccess),
+    map(action => action.payload),
+    tap((payload) => {
+      const { customer } = payload;
+      console.log('addCustomerSuccess$ ==>>>', customer);
+      this.router.navigate([`/customer/${customer.insertId}`]);
+    })
+  );
+
+  @Effect({ dispatch: false })
+  updateCustomerSuccess$ = this.actions$.pipe(
+    ofType<UpdateCustomerSuccess>(CustomerActionTypes.UpdateCustomerSuccess),
+    map(action => action.payload),
+    tap((payload) => {
+      const { customer } = payload;
+      this.router.navigate([`/customer/${customer.insertId}`], { replaceUrl: true });
+    })
+  );
+
   constructor(
     private actions$: Actions,
     private customerService: CustomerService,
-    private notificationService: NotificationService
+    private notificationService: NotificationService,
+    private router: Router
   ) { }
 }

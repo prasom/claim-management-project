@@ -12,6 +12,14 @@ mat-sidenav {
   background-color: $colorSubToolbar;
 }
 
+.active {
+  background-color: royalblue;
+}
+
+.active_sub_menu {
+  background-color: rgba(0,0,0,.04);
+}
+
 .app--content_container{
   height: calc(100vh - 128px);
 }

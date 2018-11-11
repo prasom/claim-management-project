@@ -9,9 +9,9 @@
       <button mat-button [routerLink]="['/bill']" routerLinkActive="active">วางบิล</button>
       <button mat-button [matMenuTriggerFor]="menu" routerLinkActive="active">ตั้งค่า</button>
       <mat-menu #menu="matMenu" [overlapTrigger]="false">
-        <button mat-menu-item [routerLink]="['setting/typeofinsure']" routerLinkActive="router-link-active">บริษัทประกัน</button>
-        <button mat-menu-item [routerLink]="['setting/typeofcar']" routerLinkActive="router-link-active">ประเภทรถ</button>
-        <button mat-menu-item [routerLink]="['setting/logo']" routerLinkActive="router-link-active">Logo</button>
+        <button mat-menu-item [routerLink]="['setting/typeofinsure']" routerLinkActive="active_sub_menu">บริษัทประกัน</button>
+        <button mat-menu-item [routerLink]="['setting/typeofcar']" routerLinkActive="active_sub_menu">ประเภทรถ</button>
+        <button mat-menu-item [routerLink]="['setting/logo']" routerLinkActive="active_sub_menu">Logo</button>
       </mat-menu>
     </mat-toolbar-row>
   </mat-toolbar>

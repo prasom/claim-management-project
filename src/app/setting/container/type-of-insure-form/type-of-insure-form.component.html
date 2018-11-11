@@ -3,13 +3,15 @@
     <span class="text-md">บริษัทประกัน</span>
     <strong>{{selectedInsure?.name}}</strong>
   </div>
-  <div *ngIf="isEdit || isCreate" fxFlex="100%" fxLayout="column" class="typeof-insure--item">
-    <mat-form-field>
+  <div *ngIf="isEdit || isCreate" fxFlex="100%" fxLayout="row wrap" class="typeof-insure--item">
+    <mat-form-field fxFlex.lt-sm="100%" fxFlex="45%">
       <input matInput placeholder="บริษัทประกัน" [formControl]="insureTypeName">
       <mat-error *ngIf="insureTypeName.hasError('required')">
         กรุณาเพิ่มข้อมูล บริษัทประกัน
       </mat-error>
     </mat-form-field>
+    <div fxFlex></div>
+    <div fxFlex.lt-sm="100%" fxFlex="45%"></div>
   </div>
   <div fxFlex="100%" class="typeof-insure--item">
     <div class="button-row" fxFlex="100%">
