@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { SettingStoreFacade } from '../../store/setting-store.facade';
 import { IInsure } from '../../../core/models/insure.model';
 
@@ -10,9 +10,10 @@ import { IInsure } from '../../../core/models/insure.model';
   styleUrls: ['./type-of-insure-list.component.css']
 })
 export class TypeOfInsureListComponent implements OnInit, AfterViewInit {
- 
+
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   dataSource = new MatTableDataSource<IInsure>();
   displayedColumns = ['id', 'name'];
@@ -28,6 +29,7 @@ export class TypeOfInsureListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 }

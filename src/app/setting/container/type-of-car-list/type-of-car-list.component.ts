@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { ITypeOfCar } from '../../../core/models/type-of-car.model';
 import { SettingStoreFacade } from '../../store/setting-store.facade';
 
@@ -13,6 +13,7 @@ export class TypeOfCarListComponent implements OnInit, AfterViewInit {
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   dataSource = new MatTableDataSource<ITypeOfCar>();
   displayedColumns = ['id', 'name'];
@@ -28,6 +29,7 @@ export class TypeOfCarListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 }

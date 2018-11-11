@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { IBillFullViewModel } from '../../../core/models/bill.model';
 import { Observable } from 'rxjs';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { Router } from '@angular/router';
 import { CoreStoreFacade } from '../../../core/store/core-store.facade';
 import { FormControl } from '@angular/forms';
@@ -15,6 +15,7 @@ import { FormControl } from '@angular/forms';
 export class BillListComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   bills$: Observable<IBillFullViewModel[]>;
 
@@ -36,6 +37,7 @@ export class BillListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   print(element: IBillFullViewModel) {

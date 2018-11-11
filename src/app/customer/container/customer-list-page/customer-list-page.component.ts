@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
 import { ICustomerModel } from '../../../core/models/customer.model';
-import { MatPaginator, MatTableDataSource } from '@angular/material';
+import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 import { FormBuilder, FormControl, Validators, FormGroup } from '@angular/forms';
 import { CoreStoreFacade } from '../../../core/store/core-store.facade';
 import { Router } from '@angular/router';
@@ -22,6 +22,8 @@ export class CustomerListPageComponent implements OnInit, AfterViewInit {
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  
   dataSource = new MatTableDataSource<ICustomerModel>();
   searchForms: FormGroup;
 
@@ -44,6 +46,7 @@ export class CustomerListPageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
   searchCustomer() {

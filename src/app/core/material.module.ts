@@ -80,6 +80,7 @@ import { CdkTreeModule } from '@angular/cdk/tree';
         MatTooltipModule,
         MatTreeModule,
         MatFormFieldModule,
+        MatSortModule
     ],
 })
 export class MaterialHelperModule {

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { ICustomerModel } from '../../../core/models/customer.model';
 import * as moment from 'moment';
 import { ParkingHistoryViewModel } from '../../../core/models/parking-receive.model';
@@ -20,6 +20,8 @@ export class ParkingReceiveListPageComponent implements OnInit, AfterViewInit {
 
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+
   dataSource = new MatTableDataSource<ICustomerModel>();
 
   constructor(
@@ -43,6 +45,7 @@ export class ParkingReceiveListPageComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
   }
 
 
