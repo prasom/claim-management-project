@@ -53,7 +53,6 @@ export function reducer(state = initialState, action: CustomerActions): Customer
         ...state,
         loading: false,
         loaded: true,
-        customer: [action.payload.customer]
       };
     }
     case CustomerActionTypes.ViewCustomer: {
